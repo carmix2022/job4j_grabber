@@ -12,10 +12,10 @@ public class HabrCareerParse {
 
     private static final String SOURCE_LINK = "https://career.habr.com";
 
-    private static final String PAGE_LINK = String.format("%s/vacancies/java_developer", SOURCE_LINK);
+    private static final String PAGE1_LINK = String.format("%s/vacancies/java_developer?page=1", SOURCE_LINK);
 
-    public static void main(String[] args) throws IOException {
-        Connection connection = Jsoup.connect(PAGE_LINK);
+    private static void pageParsing(String anotherPage) throws IOException {
+        Connection connection = Jsoup.connect(anotherPage);
         Document document = connection.get();
         Elements rows = document.select(".vacancy-card__inner");
         rows.forEach(row -> {
@@ -27,5 +27,12 @@ public class HabrCareerParse {
             String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
             System.out.printf("%s %s %s%n", vacancyName, date, link);
         });
+    }
+
+    public static void main(String[] args) throws IOException {
+        StringBuilder anotherPage = new StringBuilder(PAGE1_LINK);
+        for (int i = 1; i <= 5; i++, anotherPage.setCharAt(anotherPage.length() - 1, (char) (i + 48))) {
+            pageParsing(anotherPage.toString());
+        }
     }
 }

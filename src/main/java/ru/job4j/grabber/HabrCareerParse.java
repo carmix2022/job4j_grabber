@@ -5,14 +5,16 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import ru.job4j.grabber.utils.HabrCareerDateTimeParser;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class HabrCareerParse {
 
     private static final String SOURCE_LINK = "https://career.habr.com";
-
-    private static final String PAGE1_LINK = String.format("%s/vacancies/java_developer?page=1", SOURCE_LINK);
+    private static final String PAGE_LINK = String.format("%s/vacancies/java_developer?page=", SOURCE_LINK);
+    private static final HabrCareerDateTimeParser DATE_TIME_PARSER = new HabrCareerDateTimeParser();
 
     private static void pageParsing(String anotherPage) throws IOException {
         Connection connection = Jsoup.connect(anotherPage);
@@ -23,16 +25,16 @@ public class HabrCareerParse {
             Element dateElement = row.select(".vacancy-card__date").first().child(0);
             Element linkElement = titleElement.child(0);
             String vacancyName = titleElement.text();
-            String date = dateElement.attr("datetime").split("T")[0];
+            LocalDateTime date = DATE_TIME_PARSER.parse(dateElement.attr("datetime"));
             String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
             System.out.printf("%s %s %s%n", vacancyName, date, link);
         });
     }
 
     public static void main(String[] args) throws IOException {
-        StringBuilder anotherPage = new StringBuilder(PAGE1_LINK);
-        for (int i = 1; i <= 5; i++, anotherPage.setCharAt(anotherPage.length() - 1, (char) (i + 48))) {
-            pageParsing(anotherPage.toString());
+        for (int i = 1; i <= 5; i++) {
+            String link = "%s%d".formatted(PAGE_LINK, i);
+            pageParsing(link);
         }
     }
 }

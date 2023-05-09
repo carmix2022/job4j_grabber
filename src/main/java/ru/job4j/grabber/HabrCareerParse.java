@@ -31,6 +31,13 @@ public class HabrCareerParse {
         });
     }
 
+    private static String retrieveDescription(String link) throws IOException {
+        Connection connection = Jsoup.connect(link);
+        Document document = connection.get();
+        Elements description = document.select(".vacancy-description__text");
+        return String.format("%s%n", description.text());
+    }
+
     public static void main(String[] args) throws IOException {
         for (int i = 1; i <= 5; i++) {
             String link = "%s%d".formatted(PAGE_LINK, i);

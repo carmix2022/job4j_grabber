@@ -24,7 +24,7 @@ public class HabrCareerParse implements Parse {
     @Override
     public List<Post> list(String link) throws IOException {
         List<Post> postList = new ArrayList<>();
-        for (int i = 1; i <= 1; i++) {
+        for (int i = 1; i <= 2; i++) {
             String linkPage = "%s%s%d".formatted(link, "?page=", i);
             pageParsing(linkPage, postList);
         }

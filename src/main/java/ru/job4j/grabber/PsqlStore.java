@@ -51,8 +51,8 @@ public class PsqlStore implements Store {
     private Post createPost(ResultSet rs) throws SQLException {
         Post post = new Post(
                 rs.getString("name"),
-                rs.getString("text"),
                 rs.getString("link"),
+                rs.getString("text"),
                 rs.getTimestamp("created").toLocalDateTime()
         );
         post.setId(rs.getInt("id"));

@@ -58,6 +58,7 @@ public class Grabber implements Grab {
                             out.write(post.toString().getBytes());
                             out.write(System.lineSeparator().getBytes());
                         }
+                        out.flush();
                     } catch (IOException io) {
                         io.printStackTrace();
                     }

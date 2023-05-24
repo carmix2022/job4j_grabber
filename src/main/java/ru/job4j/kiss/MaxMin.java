@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MaxMin {
-    public <T> T findListExtremum(List<T> value, Comparator<T> comparator) {
+    private  <T> T findListExtremum(List<T> value, Comparator<T> comparator) {
         if (value.isEmpty()) {
             return null;
         }

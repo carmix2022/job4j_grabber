@@ -11,10 +11,11 @@ public class Comment {
         this.user = user;
     }
 
-    /*getter/setter*/
-
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public String toString() {
+        return "Comment{"
+                + "text='" + text + '\''
+                + ", user=" + user
+                + '}';
     }
 }

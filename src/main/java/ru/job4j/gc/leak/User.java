@@ -17,7 +17,9 @@ public class User {
     }
 
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public String toString() {
+        return "User{"
+                + "name='" + name + '\''
+                + '}';
     }
 }

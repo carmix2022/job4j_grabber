@@ -42,9 +42,7 @@ public class Menu {
             if (ADD_POST == userChoice) {
                 System.out.println(TEXT_OF_POST);
                 String text = scanner.nextLine();
-                userGenerator.generate();
-                commentGenerator.generate();
-                postStore.add(new Post(text, CommentGenerator.getComments()));
+                createPost(commentGenerator, userGenerator, postStore, text);
             } else if (ADD_MANY_POST == userChoice) {
                 System.out.println(TEXT_OF_POST);
                 String text = scanner.nextLine();

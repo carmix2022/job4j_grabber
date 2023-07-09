@@ -23,11 +23,7 @@ public class CommentGenerator implements Generate {
     }
 
     private void read() {
-        try {
             phrases = read(PATH_PHRASES);
-        } catch (IOException e) {
-            throw new IllegalArgumentException(e);
-        }
     }
 
     public static List<Comment> getComments() {
@@ -37,13 +33,14 @@ public class CommentGenerator implements Generate {
     @Override
     public void generate() {
         comments.clear();
+        StringBuilder comment = new StringBuilder();
         for (int i = 0; i < COUNT; i++) {
-            String comment = String.format("%s%s%s%s%s",
-                    phrases.get(random.nextInt(phrases.size())), SEPARATOR,
-                    phrases.get(random.nextInt(phrases.size())), SEPARATOR,
-                    phrases.get(random.nextInt(phrases.size())));
-            comments.add(new Comment(comment,
+            comment.append(phrases.get(random.nextInt(phrases.size()))).append(SEPARATOR)
+                    .append(phrases.get(random.nextInt(phrases.size()))).append(SEPARATOR)
+                    .append(phrases.get(random.nextInt(phrases.size())));
+            comments.add(new Comment(comment.toString(),
                     userGenerator.randomUser()));
+            comment.setLength(0);
         }
     }
 }

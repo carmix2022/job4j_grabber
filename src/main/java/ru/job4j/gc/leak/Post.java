@@ -29,10 +29,12 @@ public class Post {
         this.id = id;
     }
 
-    /*остальные getter/setter*/
-
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
+    public String toString() {
+        return "Post{"
+                + "id=" + id
+                + ", text='" + text + '\''
+                + ", comments=" + comments
+                + '}';
     }
 }

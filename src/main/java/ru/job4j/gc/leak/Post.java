@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Post {
 
-    private Integer id;
+    private int id;
 
-    private String text;
+    private final String text;
 
-    private List<Comment> comments;
+    private final List<Comment> comments;
 
-    public Post(Integer id, String text, List<Comment> comments) {
+    public Post(int id, String text, List<Comment> comments) {
         this.id = id;
         this.text = text;
         this.comments = comments;

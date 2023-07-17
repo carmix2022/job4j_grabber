@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.function.Predicate;
 
-@Disabled("Тесты отключены. Удалить аннотацию после реализации всех методов по заданию.")
+@Disabled("РўРµСЃС‚С‹ РѕС‚РєР»СЋС‡РµРЅС‹")
 public class Cinema3DTest {
     @Test
     public void whenBuyThenGetTicket() {

@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.*;
 
-@Disabled("Тесты отключены. Удалить аннотацию после реализации всех методов по заданию.")
+@Disabled("РўРµСЃС‚С‹ РѕС‚РєР»СЋС‡РµРЅС‹")
 class MyGeneratorTest {
     @Test
     public void whenMapArgsNumberIsEqualToStringArgsNumberThenCorrect() {

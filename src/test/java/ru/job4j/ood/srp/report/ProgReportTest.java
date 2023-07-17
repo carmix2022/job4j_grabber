@@ -27,7 +27,8 @@ public class ProgReportTest {
         store.add(worker);
         ReportType reportType = new ProgReport(store, parser, ";");
         Report engine = new ReportEngine(reportType);
-        String expect = "Name;Hired;Fired;Salary;\r\nIvan;25:01:2017 00:00;25:01:2018 00:00;10000.0;\r\n";
+        String expect = "Name;Hired;Fired;Salary;" + System.lineSeparator()
+                + "Ivan;25:01:2017 00:00;25:01:2018 00:00;10000.0;" + System.lineSeparator();
         assertThat(engine.generate(em -> true)).isEqualTo(expect);
     }
 }

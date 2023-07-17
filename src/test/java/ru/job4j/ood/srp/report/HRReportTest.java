@@ -33,7 +33,8 @@ public class HRReportTest {
         store.add(worker3);
         ReportType reportType = new HRReport(store);
         Report engine = new ReportEngine(reportType);
-        String expect = "Name; Salary;\r\nPetr 10000.0\r\nAlex 20000.0\r\nIvan 30000.0\r\n";
+        String expect = "Name; Salary;" + System.lineSeparator() + "Petr 10000.0" + System.lineSeparator()
+                + "Alex 20000.0" + System.lineSeparator() + "Ivan 30000.0" + System.lineSeparator();
         assertThat(engine.generate(em -> true)).isEqualTo(expect);
     }
 }

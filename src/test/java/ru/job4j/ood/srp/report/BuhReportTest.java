@@ -29,7 +29,8 @@ public class BuhReportTest {
         store.add(worker);
         ReportType reportType = new BuhReport(store, parser, currencyConverter);
         Report engine = new ReportEngine(reportType);
-        String expect = "Name; Hired; Fired; Salary;\r\nIvan 25:01:2017 00:00 25:01:2018 00:00 162.0\r\n";
+        String expect = "Name; Hired; Fired; Salary;" + System.lineSeparator()
+                + "Ivan 25:01:2017 00:00 25:01:2018 00:00 162.0" + System.lineSeparator();
         assertThat(engine.generate(em -> true)).isEqualTo(expect);
     }
 }

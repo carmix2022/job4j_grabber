@@ -1,8 +1,11 @@
 package ru.job4j.ood.srp.model;
 
+import ru.job4j.ood.srp.formatter.XmlEmployeeSerializer;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Calendar;
 import java.util.Objects;
 
+@XmlJavaTypeAdapter(XmlEmployeeSerializer.class)
 public class Employee {
     private String name;
     private Calendar hired;

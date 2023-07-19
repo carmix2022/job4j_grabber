@@ -1,10 +1,7 @@
 package ru.job4j.ood.srp.formatter;
 
-import ru.job4j.ood.srp.reporttype.ReportType;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class ReportDateTimeParser implements DateTimeParser<Calendar> {
 

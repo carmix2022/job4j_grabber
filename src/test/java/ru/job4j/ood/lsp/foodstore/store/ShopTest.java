@@ -15,6 +15,7 @@ class ShopTest {
     @Test
     public void whenShopThenOK() {
         Shop.getInstance().clear();
+        LocalDate localDate = LocalDate.now();
         Food f1 = new Milk("Prostokvashino", LocalDate.of(2023, 9, 1),
                 LocalDate.of(2023, 7, 19), 20.5, 10);
         Food f2 = new Bread("Borodinskiy", LocalDate.of(2023, 8, 1),
@@ -23,10 +24,8 @@ class ShopTest {
                 LocalDate.of(2023, 7, 7), 30.5, 10);
         Food f4 = new Cheese("Kosichka", LocalDate.of(2023, 6, 1),
                 LocalDate.of(2023, 1, 1), 30.5, 5);
-        Shop.getInstance().add(f1);
-        Shop.getInstance().add(f2);
-        Shop.getInstance().add(f3);
-        Shop.getInstance().add(f4);
+        List<Food> list = List.of(f1, f2, f3, f4);
+        list.forEach(f -> Shop.getInstance().checkAndAdd(f, localDate));
         f3.setPrice(27.45);
         List<Food> expected = List.of(f2, f3);
         List<Food> fact = Shop.getInstance().getList();

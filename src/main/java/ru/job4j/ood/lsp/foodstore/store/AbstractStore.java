@@ -9,9 +9,9 @@ import java.util.List;
 
 public abstract class AbstractStore implements Store {
     protected List<Food> store = new ArrayList<>();
-    public void add(Food food) {
-        store.add(food);
-    }
+    protected static final double TIME_SHARE_UPPER_LIMIT = 1.0;
+    protected static final double TIME_SHARE_MIDDLE_LIMIT = 0.75;
+    protected static final double TIME_SHARE_LOWER_LIMIT = 0.25;
 
     public List<Food> getList() {
         return List.copyOf(store);
@@ -21,22 +21,9 @@ public abstract class AbstractStore implements Store {
         store.clear();
     }
 
-    protected static double calcShareOfSpentFoodTime(Food food) {
+    protected static double calcShareOfSpentFoodTime(Food food, LocalDate localDate) {
         long expirationTime = ChronoUnit.DAYS.between(food.getCreateDate(), food.getExpiryDate());
-        long spentTime = ChronoUnit.DAYS.between(food.getCreateDate(), LocalDate.now());
+        long spentTime = ChronoUnit.DAYS.between(food.getCreateDate(), localDate);
         return 1.0 * spentTime / expirationTime;
-    }
-
-    public static Store check(Food food) {
-        if (Warehouse.warehousePredicate.test(food)) {
-            return Warehouse.getInstance();
-        }
-        if (Shop.shopPredicate1.test(food) || Shop.shopPredicate2.test(food)) {
-            return Shop.getInstance();
-        }
-        if (Trash.trashPredicate.test(food)) {
-            return Trash.getInstance();
-        }
-        return null;
     }
 }

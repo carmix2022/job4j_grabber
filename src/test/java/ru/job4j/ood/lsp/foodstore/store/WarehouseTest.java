@@ -16,6 +16,7 @@ class WarehouseTest {
     @Test
     public void whenWarehouseThenOK() {
         Warehouse.getInstance().clear();
+        LocalDate localDate = LocalDate.now();
         Food f1 = new Milk("Prostokvashino", LocalDate.of(2023, 9, 1),
                 LocalDate.of(2023, 7, 19), 20.5, 10);
         Food f2 = new Bread("Borodinskiy", LocalDate.of(2023, 8, 1),
@@ -24,11 +25,9 @@ class WarehouseTest {
                 LocalDate.of(2023, 7, 7), 30.5, 10);
         Food f4 = new Cheese("Kosichka", LocalDate.of(2023, 6, 1),
                 LocalDate.of(2023, 1, 1), 30.5, 5);
-        Warehouse.getInstance().add(f1);
-        Warehouse.getInstance().add(f2);
-        Warehouse.getInstance().add(f3);
-        Warehouse.getInstance().add(f4);
-        List<Food> expected = List.of(f1, f2, f3, f4);
+        List<Food> list = List.of(f1, f2, f3, f4);
+        list.forEach(f -> Warehouse.getInstance().checkAndAdd(f, localDate));
+        List<Food> expected = List.of(f1);
         List<Food> fact = Warehouse.getInstance().getList();
         Warehouse.getInstance().clear();
         assertThat(fact).isEqualTo(expected);

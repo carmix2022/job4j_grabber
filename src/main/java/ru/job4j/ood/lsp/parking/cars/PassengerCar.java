@@ -1,6 +1,6 @@
 package ru.job4j.ood.lsp.parking.cars;
 
-import ru.job4j.ood.lsp.parking.parking.Parking;
+import ru.job4j.ood.lsp.parking.ParkingService;
 
 public class PassengerCar implements Car {
     private static final int CAR_SIZE = 1;
@@ -11,19 +11,19 @@ public class PassengerCar implements Car {
     public boolean getParkStatus() {
         return isParked;
     }
-
-    @Override
     public void setParkStatus(boolean bool) {
         isParked = bool;
     }
 
     @Override
-    public boolean park(Parking parking) {
-        return false;
+    public boolean park(ParkingService parkingService) {
+        if (parkingService.checkAndPark(this)) {
+            setParkStatus(true);
+        }
+        return getParkStatus();
     }
-
     @Override
-    public boolean unpark(Parking parking) {
-        return false;
+    public int getSize() {
+        return CAR_SIZE;
     }
 }

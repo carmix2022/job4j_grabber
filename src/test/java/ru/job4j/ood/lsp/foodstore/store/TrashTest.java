@@ -15,7 +15,7 @@ class TrashTest {
     @Test
     public void whenTrashThenOK() {
         Trash.getInstance().clear();
-        LocalDate localDate = LocalDate.now();
+        LocalDate localDate = LocalDate.of(2023, 7, 22);
         Food f1 = new Milk("Prostokvashino", LocalDate.of(2023, 9, 1),
                 LocalDate.of(2023, 7, 19), 20.5, 10);
         Food f2 = new Bread("Borodinskiy", LocalDate.of(2023, 8, 1),

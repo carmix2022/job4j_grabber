@@ -37,7 +37,7 @@ class ControlQualityTest {
                 LocalDate.of(2023, 1, 1), 30.5, 5);
         List<Food> list = List.of(f1, f2, f3, f4);
         ControlQuality cq = new ControlQuality(stores);
-        cq.controlQuality(list, LocalDate.now());
+        cq.controlQuality(list, LocalDate.of(2023, 7, 22));
         List<String> expected = List.of("[Food{name='Kosichka', expiryDate=2023-06-01, createDate=2023-01-01, price=30.5, discount=5.0}]",
                 "[Food{name='Prostokvashino', expiryDate=2023-09-01, createDate=2023-07-19, price=20.5, discount=10.0}]",
                 "[Food{name='Borodinskiy', expiryDate=2023-08-01, createDate=2023-07-10, price=40.5, discount=15.0}, "

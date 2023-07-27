@@ -5,6 +5,7 @@ import ru.job4j.ood.lsp.foodstore.store.Store;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControlQuality {
 
@@ -25,5 +26,13 @@ public class ControlQuality {
                 }
             }
         }
+    }
+
+    public void resort(LocalDate localDate) {
+        List<Food> foodList = storeList.stream()
+                .flatMap(store -> store.getList().stream())
+                .toList();
+        storeList.forEach(Store::clear);
+        controlQuality(foodList, localDate);
     }
 }

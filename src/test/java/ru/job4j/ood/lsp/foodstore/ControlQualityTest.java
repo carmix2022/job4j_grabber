@@ -19,14 +19,12 @@ class ControlQualityTest {
 
     @Test
     public void whenControlQualityThenOK() {
-        Trash.getInstance().clear();
-        Shop.getInstance().clear();
-        Warehouse.getInstance().clear();
         List<Store> stores = List.of(
                 Trash.getInstance(),
                 Warehouse.getInstance(),
                 Shop.getInstance()
         );
+        stores.forEach(Store::clear);
         Food f1 = new Milk("Prostokvashino", LocalDate.of(2023, 9, 1),
                 LocalDate.of(2023, 7, 19), 20.5, 10);
         Food f2 = new Bread("Borodinskiy", LocalDate.of(2023, 8, 1),
@@ -47,9 +45,6 @@ class ControlQualityTest {
                 Warehouse.getInstance().getList().toString(),
                 Shop.getInstance().getList().toString()
         );
-        Trash.getInstance().clear();
-        Shop.getInstance().clear();
-        Warehouse.getInstance().clear();
         assertThat(fact).isEqualTo(expected);
     }
 
@@ -83,7 +78,6 @@ class ControlQualityTest {
                 Warehouse.getInstance().getList().toString(),
                 Shop.getInstance().getList().toString()
         );
-        stores.forEach(Store::clear);
         assertThat(fact).isEqualTo(expected);
     }
 }

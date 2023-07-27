@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ControlQuality {
 
-    private static List<Store> storeList = new ArrayList<>();
+    private List<Store> storeList = new ArrayList<>();
 
     public ControlQuality() {
     }
